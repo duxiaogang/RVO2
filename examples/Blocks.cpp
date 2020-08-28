@@ -81,7 +81,8 @@ void setupScenario(RVO::RVOSimulator *sim)
 	sim->setTimeStep(0.25f);
 
 	/* Specify the default parameters for agents that are subsequently added. */
-	sim->setAgentDefaults(15.0f, 10, 5.0f, 5.0f, 2.0f, 2.0f);
+	//sim->setAgentDefaults(15.0f, 10, 5.0f, 5.0f, 2.0f, 2.0f);
+	sim->setAgentDefaults(15.0f, 10, 5.0f, 5.0f, 1.0f, 5.0f);
 
 	/*
 	 * Add agents, specifying their start position, and store their goals on the
@@ -134,6 +135,32 @@ void setupScenario(RVO::RVOSimulator *sim)
 	sim->addObstacle(obstacle3);
 	sim->addObstacle(obstacle4);
 
+	//obstacle1.push_back(RVO::Vector2(-40.0f, 10.0f));
+	//obstacle1.push_back(RVO::Vector2(-40.0f, -10.0f));
+	//obstacle1.push_back(RVO::Vector2(40.0f, -10.0f));
+	//obstacle1.push_back(RVO::Vector2(40.0f, 10.0f));
+
+	//no overlap
+	//obstacle2.push_back(RVO::Vector2(-10.0f, 12.0f));
+	//obstacle2.push_back(RVO::Vector2(-10.0f, 10.0f));
+	//obstacle2.push_back(RVO::Vector2(10.0f, 10.0f));
+	//obstacle2.push_back(RVO::Vector2(10.0f, 12.0f));
+
+	//obstacle3.push_back(RVO::Vector2(-10.0f, -10.0f));
+	//obstacle3.push_back(RVO::Vector2(-10.0f, -12.0f));
+	//obstacle3.push_back(RVO::Vector2(10.0f, -12.0f));
+	//obstacle3.push_back(RVO::Vector2(10.0f, -10.0f));
+
+	//overlaped polygon
+	//obstacle2.push_back(RVO::Vector2(-10.0f, 12.0f));
+	//obstacle2.push_back(RVO::Vector2(-10.0f, -12.0f));
+	//obstacle2.push_back(RVO::Vector2(10.0f, -12.0f));
+	//obstacle2.push_back(RVO::Vector2(10.0f, 12.0f));
+
+	//sim->addObstacle(obstacle1);
+	//sim->addObstacle(obstacle2);
+	//sim->addObstacle(obstacle3);
+
 	/* Process the obstacles so that they are accounted for in the simulation. */
 	sim->processObstacles();
 }
@@ -165,8 +192,14 @@ void setPreferredVelocities(RVO::RVOSimulator *sim)
 	for (int i = 0; i < static_cast<int>(sim->getNumAgents()); ++i) {
 		RVO::Vector2 goalVector = goals[i] - sim->getAgentPosition(i);
 
-		if (RVO::absSq(goalVector) > 1.0f) {
+		//if (RVO::absSq(goalVector) > 1.0f) {
+		//	goalVector = RVO::normalize(goalVector);
+		//}
+		if (RVO::absSq(goalVector) > 8.0f * 8.0f) {
 			goalVector = RVO::normalize(goalVector);
+		} else {
+			sim->setAgentPrefVelocity(i, RVO::Vector2());
+			continue;
 		}
 
 		sim->setAgentPrefVelocity(i, goalVector);
@@ -186,7 +219,7 @@ bool reachedGoal(RVO::RVOSimulator *sim)
 {
 	/* Check if all agents have reached their goals. */
 	for (size_t i = 0; i < sim->getNumAgents(); ++i) {
-		if (RVO::absSq(sim->getAgentPosition(i) - goals[i]) > 20.0f * 20.0f) {
+		if (RVO::absSq(sim->getAgentPosition(i) - goals[i]) > 10.0f * 10.0f) {
 			return false;
 		}
 	}

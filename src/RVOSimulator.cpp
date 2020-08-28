@@ -123,6 +123,7 @@ namespace RVO {
 
 	size_t RVOSimulator::addObstacle(const std::vector<Vector2> &vertices)
 	{
+		//可以为2？
 		if (vertices.size() < 2) {
 			return RVO_ERROR;
 		}
@@ -133,6 +134,11 @@ namespace RVO {
 			Obstacle *obstacle = new Obstacle();
 			obstacle->point_ = vertices[i];
 
+			//多个obstacle放在同一个obstacles_ vector中
+			//每个obs占了几格
+			//同一个obs内部next/prev之间连续
+			//obs间的next/prev并无关系
+			//每个Obstacle结构代表一个顶点，并且每个Obstacle都有自己的独立id
 			if (i != 0) {
 				obstacle->prevObstacle_ = obstacles_.back();
 				obstacle->prevObstacle_->nextObstacle_ = obstacle;

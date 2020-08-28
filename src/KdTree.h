@@ -51,6 +51,7 @@ namespace RVO {
 		 * \brief      Defines an agent <i>k</i>d-tree node.
 		 */
 		class AgentTreeNode {
+			//begin/end/left/right这些是什么？
 		public:
 			/**
 			 * \brief      The beginning node number.
