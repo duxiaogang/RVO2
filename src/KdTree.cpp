@@ -155,6 +155,7 @@ namespace RVO {
 					const float j1LeftOfI = leftOf(obstacleI1->point_, obstacleI2->point_, obstacleJ1->point_);
 					const float j2LeftOfI = leftOf(obstacleI1->point_, obstacleI2->point_, obstacleJ2->point_);
 
+					//浮点数判断有点诡异？特别是0的处理
 					if (j1LeftOfI >= -RVO_EPSILON && j2LeftOfI >= -RVO_EPSILON) {
 						++leftSize;
 					}
@@ -166,6 +167,7 @@ namespace RVO {
 						++rightSize;
 					}
 
+					//pair.second到底起什么作用？sum？
 					if (std::make_pair(std::max(leftSize, rightSize), std::min(leftSize, rightSize)) >= std::make_pair(std::max(minLeft, minRight), std::min(minLeft, minRight))) {
 						break;
 					}

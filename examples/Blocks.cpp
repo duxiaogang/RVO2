@@ -120,20 +120,20 @@ void setupScenario(RVO::RVOSimulator *sim)
 	obstacle2.push_back(RVO::Vector2(40.0f, 10.0f));
 	obstacle2.push_back(RVO::Vector2(40.0f, 40.0f));
 
-	obstacle3.push_back(RVO::Vector2(10.0f, -40.0f));
-	obstacle3.push_back(RVO::Vector2(40.0f, -40.0f));
-	obstacle3.push_back(RVO::Vector2(40.0f, -10.0f));
-	obstacle3.push_back(RVO::Vector2(10.0f, -10.0f));
+	//obstacle3.push_back(RVO::Vector2(10.0f, -40.0f));
+	//obstacle3.push_back(RVO::Vector2(40.0f, -40.0f));
+	//obstacle3.push_back(RVO::Vector2(40.0f, -10.0f));
+	//obstacle3.push_back(RVO::Vector2(10.0f, -10.0f));
 
-	obstacle4.push_back(RVO::Vector2(-10.0f, -40.0f));
-	obstacle4.push_back(RVO::Vector2(-10.0f, -10.0f));
-	obstacle4.push_back(RVO::Vector2(-40.0f, -10.0f));
-	obstacle4.push_back(RVO::Vector2(-40.0f, -40.0f));
+	//obstacle4.push_back(RVO::Vector2(-10.0f, -40.0f));
+	//obstacle4.push_back(RVO::Vector2(-10.0f, -10.0f));
+	//obstacle4.push_back(RVO::Vector2(-40.0f, -10.0f));
+	//obstacle4.push_back(RVO::Vector2(-40.0f, -40.0f));
 
 	sim->addObstacle(obstacle1);
 	sim->addObstacle(obstacle2);
-	sim->addObstacle(obstacle3);
-	sim->addObstacle(obstacle4);
+	//sim->addObstacle(obstacle3);
+	//sim->addObstacle(obstacle4);
 
 	//obstacle1.push_back(RVO::Vector2(-40.0f, 10.0f));
 	//obstacle1.push_back(RVO::Vector2(-40.0f, -10.0f));
@@ -142,6 +142,7 @@ void setupScenario(RVO::RVOSimulator *sim)
 
 	//no overlap
 	//obstacle2.push_back(RVO::Vector2(-10.0f, 12.0f));
+	//obstacle2.push_back(RVO::Vector2(-10.0f, 10.0f));
 	//obstacle2.push_back(RVO::Vector2(-10.0f, 10.0f));
 	//obstacle2.push_back(RVO::Vector2(10.0f, 10.0f));
 	//obstacle2.push_back(RVO::Vector2(10.0f, 12.0f));
